@@ -34,7 +34,7 @@ public abstract class GraphicsTransformative
 
         Vec2 p = transform(point);
         mapToScreen(p);
-        draw(() -> g.drawOval((int)p.x - size/2, (int)p.y - size/2, size,size));
+        draw(() -> g.fillOval((int)p.x - size/2, (int)p.y - size/2, size,size));
     }
 
     public final void drawLine(Vec2 start, Vec2 end) {
