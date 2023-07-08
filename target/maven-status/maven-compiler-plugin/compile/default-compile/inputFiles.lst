@@ -1,6 +1,12 @@
 C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\ui\GraphFrame.java
 C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\graphics\GraphicsTransformative.java
+C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\graphable\impl\func\GraphableFunc.java
 C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\graphable\impl\GraphableAxes.java
+C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\ui\GraphContent.java
 C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\graphics\impl\GraphicsLinear.java
 C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\graphable\Graphable.java
+C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\canvas\ScreenCoordinateMapper.java
+C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\graphable\impl\GraphableBackground.java
+C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\ui\RefreshListener.java
+C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\ui\RefreshParms.java
 C:\Users\eddie\Documents\Project Euler\pe-graph\src\main\java\rev\pe\graph\canvas\Canvas.java

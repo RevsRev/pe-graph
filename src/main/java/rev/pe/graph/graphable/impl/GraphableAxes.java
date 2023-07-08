@@ -11,10 +11,10 @@ public class GraphableAxes extends Graphable
     @Override
     public void paintImpl(GraphicsTransformative graphicsT, Rectangle2D canvas)
     {
-        double xMin = Math.ceil(canvas.getMinX());
-        double xMax = Math.floor(canvas.getMaxX());
-        double yMin = Math.ceil(canvas.getMinY());
-        double yMax = Math.floor(canvas.getMaxY());
+        double xMin = Math.floor(canvas.getMinX());
+        double xMax = Math.ceil(canvas.getMaxX());
+        double yMin = Math.floor(canvas.getMinY());
+        double yMax = Math.ceil(canvas.getMaxY());
 
         Vec2 start = new Vec2(xMin, canvas.getMinY());
         Vec2 end = new Vec2(xMin, canvas.getMaxY());

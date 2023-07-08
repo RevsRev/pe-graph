@@ -7,22 +7,34 @@ import rev.pe.graph.canvas.Canvas;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.Instant;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
-public class GraphFrame extends JFrame
+public class GraphFrame extends JFrame implements RefreshListener
 {
     @Getter @Setter
-    private int width = 3200;
+    private int width = 1600;
     @Getter @Setter
-    private int height = 1600;
+    private int height = 800;
 
-    private JPanel contentPane;
+    private Point previousDragPos = null;
+    private Point currentDragPos = null;
+
+    private final JPanel contentPane;
 
     private final rev.pe.graph.canvas.Canvas canvas;
 
-    public GraphFrame(Canvas canvas) {
+    public GraphFrame(int width, int height, Canvas canvas) {
+        this.width = width;
+        this.height = height;
         this.canvas = canvas;
 
-        contentPane = new JPanel(getContentPane().getLayout());
+        canvas.addRefreshListener(this);
+        canvas.rescale(width, height);
+
+        contentPane = new GraphContent(getContentPane().getLayout(), width, height, canvas);
         setContentPane(contentPane);
         setSize(width, height);
 
@@ -47,9 +59,15 @@ public class GraphFrame extends JFrame
         dispose();
     }
 
-    @Override
-    public void paint(Graphics g) {
-        canvas.paint((Graphics2D)g);
+    private void scheduleRepaint(RefreshParms parms) {
+        canvas.getGraphicsT().setErase(parms.erase);
+        contentPane.paintImmediately(0,0,width, height);
+        canvas.getGraphicsT().setErase(false);
     }
 
+    @Override
+    public void refreshFired(RefreshParms parms)
+    {
+        scheduleRepaint(parms);
+    }
 }

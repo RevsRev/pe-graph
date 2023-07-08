@@ -15,9 +15,15 @@ public abstract class Graphable
     @Setter
     private boolean visible = true;
 
+    @Getter @Setter
+    private Color color = Color.BLACK;
+
     public void paint(GraphicsTransformative graphicsT, Rectangle2D canvas) {
         if (visible) {
+            Color oldColor = graphicsT.getColor();
+            graphicsT.setColor(color);
             paintImpl(graphicsT, canvas);
+            graphicsT.setColor(oldColor);
         }
     }
     public abstract void paintImpl(GraphicsTransformative graphicsT, Rectangle2D canvas);

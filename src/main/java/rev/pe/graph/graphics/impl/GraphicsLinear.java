@@ -17,10 +17,6 @@ public class GraphicsLinear extends GraphicsTransformative
     public final Mat2 bases;
     public final Mat2 basesInv;
 
-    @Getter
-    @Setter
-    private double scale = 1.0d;
-
     public GraphicsLinear(Vec2 e1, Vec2 e2) {
         this.e1=Vec2.normalize(e1);
         this.e2=Vec2.normalize(e2);
@@ -29,15 +25,7 @@ public class GraphicsLinear extends GraphicsTransformative
     }
 
     @Override
-    public void drawPointImpl(Vec2 point) {
-        Vec2 p = bases.mult(point);
-        g.drawOval((int)(scale*p.x), (int)(scale*p.y), 1, 1);
-    }
-
-    @Override
-    public void drawLineImpl(Vec2 start, Vec2 end) {
-        Vec2 s = bases.mult(start);
-        Vec2 e = bases.mult(end);
-        g.drawLine((int)(scale*s.x), (int)(scale*s.y), (int)(scale*e.x), (int)(scale*e.y));
+    public Vec2 transform(Vec2 point) {
+        return bases.mult(point);
     }
 }
