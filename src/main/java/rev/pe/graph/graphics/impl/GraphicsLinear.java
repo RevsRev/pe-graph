@@ -3,8 +3,8 @@ package rev.pe.graph.graphics.impl;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.graph.graphics.GraphicsTransformative;
-import rev.pe.math.vec.Mat2;
-import rev.pe.math.vec.Vec2;
+import rev.pe.math.linear.matrix.Mat2;
+import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.*;
 

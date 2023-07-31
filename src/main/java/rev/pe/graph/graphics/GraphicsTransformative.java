@@ -3,7 +3,7 @@ package rev.pe.graph.graphics;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.graph.canvas.Canvas;
-import rev.pe.math.vec.Vec2;
+import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.*;
 

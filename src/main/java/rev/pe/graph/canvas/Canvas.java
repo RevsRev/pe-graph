@@ -7,7 +7,7 @@ import rev.pe.graph.graphable.impl.GraphableBackground;
 import rev.pe.graph.graphics.GraphicsTransformative;
 import rev.pe.graph.ui.RefreshListener;
 import rev.pe.graph.ui.RefreshParms;
-import rev.pe.math.vec.Vec2;
+import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

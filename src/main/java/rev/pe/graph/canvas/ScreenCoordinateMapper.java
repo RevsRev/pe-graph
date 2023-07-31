@@ -1,6 +1,7 @@
 package rev.pe.graph.canvas;
 
-import rev.pe.math.vec.Vec2;
+
+import rev.pe.math.linear.vec.Vec2;
 
 public class ScreenCoordinateMapper
 {

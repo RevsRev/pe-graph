@@ -3,7 +3,7 @@ package rev.pe.graph.graphable.impl.func;
 import lombok.NonNull;
 import rev.pe.graph.graphable.Graphable;
 import rev.pe.graph.graphics.GraphicsTransformative;
-import rev.pe.math.vec.Vec2;
+import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.geom.Rectangle2D;
 import java.util.function.Function;

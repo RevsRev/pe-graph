@@ -5,7 +5,7 @@ import rev.pe.graph.graphable.Graphable;
 import rev.pe.graph.graphable.impl.GraphableAxes;
 import rev.pe.graph.graphable.impl.func.GraphableFunc;
 import rev.pe.graph.graphics.impl.GraphicsLinear;
-import rev.pe.math.vec.Vec2;
+import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
