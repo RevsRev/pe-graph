@@ -31,7 +31,6 @@ public class GraphFrame extends JFrame implements RefreshListener
         this.height = height;
         this.canvas = canvas;
 
-        canvas.addRefreshListener(this);
         canvas.rescale(width, height);
 
         contentPane = new GraphContent(getContentPane().getLayout(), width, height, canvas);

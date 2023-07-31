@@ -11,6 +11,7 @@ rev\pe\graph\canvas\Canvas.class
 rev\pe\graph\graphable\Graphable.class
 rev\pe\graph\ui\GraphFrame.class
 rev\pe\graph\graphable\impl\GraphableAxes.class
+rev\pe\graph\ui\GraphFrameUpdateRunnable.class
 rev\pe\graph\graphics\GraphicsTransformative.class
 rev\pe\graph\ui\RefreshListener.class
 rev\pe\graph\ui\GraphContent.class

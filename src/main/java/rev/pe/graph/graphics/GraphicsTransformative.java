@@ -55,7 +55,7 @@ public abstract class GraphicsTransformative
         mapToScreen(bottomLeftCorner);
         mapToScreen(topRightCorner);
         draw(()->g.fillRect((int)bottomLeftCorner.x, (int)bottomLeftCorner.y,
-                (int)(topRightCorner.x - bottomLeftCorner.x), (int)(topRightCorner.y - bottomLeftCorner.y)));
+                (int)(topRightCorner.x - bottomLeftCorner.x), (int)(bottomLeftCorner.y-topRightCorner.y)));
     }
 
     private final void draw(Runnable drawRunnable) {

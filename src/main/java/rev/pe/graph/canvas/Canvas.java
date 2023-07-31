@@ -9,7 +9,6 @@ import rev.pe.graph.ui.RefreshListener;
 import rev.pe.graph.ui.RefreshParms;
 import rev.pe.math.vec.Vec2;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
@@ -46,18 +45,10 @@ public class Canvas
     private boolean paintGraphables = true;
 
     private final Set<Graphable> graphables = new HashSet<>();
-    private final Set<RefreshListener> refreshListeners = new LinkedHashSet<>();
 
     public Canvas(GraphicsTransformative graphicsT) {
         this.graphicsT = graphicsT;
         graphicsT.setCanvas(this);
-    }
-
-    public void fireRefresh(RefreshParms parms) {
-        Iterator<RefreshListener> it = refreshListeners.iterator();
-        while (it.hasNext()) {
-            it.next().refreshFired(parms);
-        }
     }
 
     public void rescale(double widthScale, double heightScale) {
@@ -97,34 +88,17 @@ public class Canvas
         graphables.remove(graphable);
     }
 
-    public void addRefreshListener(RefreshListener listener) {
-        refreshListeners.add(listener);
-    }
-    public void removeRefreshListender(RefreshListener listener) {
-        refreshListeners.remove(listener);
-    }
-
     public void drag(Point previous, Point current) {
         if (previous == null || current == null) {
             return;
         }
 
-        SwingUtilities.invokeLater(() -> {
-            RefreshParms parms = new RefreshParms();
-            parms.erase = true;
-            fireRefresh(parms);
-        });
-
-        SwingUtilities.invokeLater(() -> {
-            Vec2 p = new Vec2(previous.x, previous.y);
-            Vec2 c = new Vec2(current.x, current.y);
-            coordMapper.mapToCanvas(p);
-            coordMapper.mapToCanvas(c);
-            Vec2 displacement = new Vec2(c.x-p.x, c.y-p.y);
-            canvasCalc = new Rectangle2D.Double(canvasCalc.getX() + displacement.x, canvasCalc.getY() + displacement.y, canvasCalc.getWidth(), canvasCalc.getHeight());
-            canvasWindow = new Rectangle2D.Double(canvasWindow.getX() + displacement.x, canvasWindow.getY() + displacement.y, canvasWindow.getWidth(), canvasWindow.getHeight());
-
-            fireRefresh(new RefreshParms());
-        });
+        Vec2 p = new Vec2(previous.x, previous.y);
+        Vec2 c = new Vec2(current.x, current.y);
+        coordMapper.mapToCanvas(p);
+        coordMapper.mapToCanvas(c);
+        Vec2 displacement = new Vec2(c.x-p.x, c.y-p.y);
+        canvasCalc = new Rectangle2D.Double(canvasCalc.getX() + displacement.x, canvasCalc.getY() + displacement.y, canvasCalc.getWidth(), canvasCalc.getHeight());
+        canvasWindow = new Rectangle2D.Double(canvasWindow.getX() + displacement.x, canvasWindow.getY() + displacement.y, canvasWindow.getWidth(), canvasWindow.getHeight());
     }
 }

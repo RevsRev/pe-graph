@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class GraphContent extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener, RefreshListener
+public class GraphContent extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener
 {
     @Getter @Setter
     private int width = 1600;
@@ -25,7 +25,6 @@ public class GraphContent extends JPanel implements MouseWheelListener, MouseMot
         this.height = height;
         this.canvas = canvas;
 
-        canvas.addRefreshListener(this);
         canvas.rescale(width, height);
 
         addMouseMotionListener(this);
@@ -37,11 +36,6 @@ public class GraphContent extends JPanel implements MouseWheelListener, MouseMot
     @Override
     public void paint(Graphics g) {
         canvas.paint((Graphics2D)g);
-    }
-    private void repaintImmediately(RefreshParms parms) {
-        canvas.getGraphicsT().setErase(parms.erase);
-        paintImmediately(0,0,width,height);
-        canvas.getGraphicsT().setErase(false);
     }
 
 
@@ -63,12 +57,6 @@ public class GraphContent extends JPanel implements MouseWheelListener, MouseMot
     public void mouseMoved(MouseEvent e)
     {
 
-    }
-
-    @Override
-    public void refreshFired(RefreshParms parms)
-    {
-        repaintImmediately(parms);
     }
 
     @Override
