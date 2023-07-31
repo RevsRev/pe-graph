@@ -10,6 +10,6 @@ public class GraphableBackground extends Graphable
     @Override
     public void paintImpl(GraphicsTransformative graphicsT, Rectangle2D canvas)
     {
-        graphicsT.fillRectangle(canvas.getMinX(), canvas.getMaxY(), canvas.getWidth(), -canvas.getHeight());
+        graphicsT.fillRectangle(canvas.getMinX(), canvas.getMaxY(), canvas.getWidth(), canvas.getHeight());
     }
 }
