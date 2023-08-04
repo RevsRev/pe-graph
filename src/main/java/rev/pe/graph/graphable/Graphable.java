@@ -18,6 +18,9 @@ public abstract class Graphable
     @Getter @Setter
     private Color color = Color.BLACK;
 
+    @Getter @Setter
+    private int layer = 0;
+
     public void paint(GraphicsTransformative graphicsT, Rectangle2D canvas) {
         if (visible) {
             Color oldColor = graphicsT.getColor();

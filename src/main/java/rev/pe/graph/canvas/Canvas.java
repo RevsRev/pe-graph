@@ -10,11 +10,9 @@ import rev.pe.graph.ui.RefreshParms;
 import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.*;
+import java.util.List;
 import java.awt.geom.Rectangle2D;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Canvas
 {
@@ -44,7 +42,7 @@ public class Canvas
     @Getter @Setter
     private boolean paintGraphables = true;
 
-    private final Set<Graphable> graphables = new HashSet<>();
+    private final List<Graphable> graphables = new ArrayList<>();
 
     public Canvas(GraphicsTransformative graphicsT) {
         this.graphicsT = graphicsT;
@@ -83,6 +81,7 @@ public class Canvas
 
     public void addGraphable(Graphable graphable) {
         graphables.add(graphable);
+        graphables.sort(Comparator.comparingInt(Graphable::getLayer));
     }
     public void removeGraphable(Graphable graphable) {
         graphables.remove(graphable);
