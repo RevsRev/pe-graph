@@ -58,16 +58,22 @@ public abstract class GraphicsTransformative
                 (int)(topRightCorner.x - bottomLeftCorner.x), (int)(bottomLeftCorner.y-topRightCorner.y)));
     }
 
-    private final void draw(Runnable drawRunnable) {
-        if (erase) {
-            g.setColor(canvas.getBackgroundColor());
-        }
+    private Runnable getDrawableRunnable(Runnable implementationRunnable) {
+        return () ->
+        {
+            if (erase) {
+                g.setColor(canvas.getBackgroundColor());
+            }
+            implementationRunnable.run();
+            if (erase) {
+                g.setColor(canvas.getDefaultLineColor());
+            }
+        };
+    }
 
+    private final void draw(Runnable drawImplementation) {
+        Runnable drawRunnable = getDrawableRunnable(drawImplementation);
         drawRunnable.run();
-
-        if (erase) {
-            g.setColor(canvas.getDefaultLineColor());
-        }
     }
 
     private final void mapToScreen(Vec2 p) {
