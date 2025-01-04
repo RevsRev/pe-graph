@@ -1,7 +1,7 @@
-package github.com.rev.plot.example.parabola.plot.graphable.impl.func;
+package github.com.rev.plot.graphable.impl.func;
 
-import github.com.rev.plot.example.parabola.plot.graphable.Graphable;
-import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.graphable.Graphable;
+import github.com.rev.plot.graphics.GraphicsTransformative;
 import lombok.NonNull;
 import rev.pe.math.linear.vec.Vec2;
 

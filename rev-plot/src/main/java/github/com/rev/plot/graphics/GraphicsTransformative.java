@@ -1,6 +1,6 @@
-package github.com.rev.plot.example.parabola.plot.graphics;
+package github.com.rev.plot.graphics;
 
-import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
+import github.com.rev.plot.canvas.Canvas;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;

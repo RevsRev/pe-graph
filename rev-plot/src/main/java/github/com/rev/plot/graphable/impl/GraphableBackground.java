@@ -1,7 +1,7 @@
-package github.com.rev.plot.example.parabola.plot.graphable.impl;
+package github.com.rev.plot.graphable.impl;
 
-import github.com.rev.plot.example.parabola.plot.graphable.Graphable;
-import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.graphable.Graphable;
+import github.com.rev.plot.graphics.GraphicsTransformative;
 
 import java.awt.geom.Rectangle2D;
 

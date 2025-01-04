@@ -1,4 +1,4 @@
-package github.com.rev.plot.example.parabola.plot.ui;
+package github.com.rev.plot.ui;
 
 public interface RefreshListener
 {

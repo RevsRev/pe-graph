@@ -1,6 +1,6 @@
-package github.com.rev.plot.example.parabola.plot.ui;
+package github.com.rev.plot.ui;
 
-import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
+import github.com.rev.plot.canvas.Canvas;
 import lombok.Getter;
 import lombok.Setter;
 

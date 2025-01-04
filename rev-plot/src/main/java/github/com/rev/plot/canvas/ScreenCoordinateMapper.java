@@ -1,4 +1,4 @@
-package github.com.rev.plot.example.parabola.plot.canvas;
+package github.com.rev.plot.canvas;
 
 
 import rev.pe.math.linear.vec.Vec2;

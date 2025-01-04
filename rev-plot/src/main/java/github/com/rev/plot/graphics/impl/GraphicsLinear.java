@@ -1,6 +1,6 @@
-package github.com.rev.plot.example.parabola.plot.graphics.impl;
+package github.com.rev.plot.graphics.impl;
 
-import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.graphics.GraphicsTransformative;
 import rev.pe.math.linear.matrix.Mat2;
 import rev.pe.math.linear.vec.Vec2;
 

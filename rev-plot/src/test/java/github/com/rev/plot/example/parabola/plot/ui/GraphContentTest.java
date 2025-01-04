@@ -1,10 +1,12 @@
 package github.com.rev.plot.example.parabola.plot.ui;
 
-import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
-import github.com.rev.plot.example.parabola.plot.graphable.Graphable;
-import github.com.rev.plot.example.parabola.plot.graphable.impl.GraphableAxes;
-import github.com.rev.plot.example.parabola.plot.graphable.impl.func.GraphableFunc;
-import github.com.rev.plot.example.parabola.plot.graphics.impl.GraphicsLinear;
+import github.com.rev.plot.canvas.Canvas;
+import github.com.rev.plot.graphable.Graphable;
+import github.com.rev.plot.graphable.impl.GraphableAxes;
+import github.com.rev.plot.graphable.impl.func.GraphableFunc;
+import github.com.rev.plot.graphics.impl.GraphicsLinear;
+import github.com.rev.plot.ui.GraphFrame;
+import github.com.rev.plot.ui.GraphFrameUpdateRunnable;
 import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.*;

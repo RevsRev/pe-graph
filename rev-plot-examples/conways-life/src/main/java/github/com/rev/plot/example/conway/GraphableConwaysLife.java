@@ -1,7 +1,7 @@
 package github.com.rev.plot.example.conway;
 
-import github.com.rev.plot.example.parabola.plot.graphable.Graphable;
-import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.graphable.Graphable;
+import github.com.rev.plot.graphics.GraphicsTransformative;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.geom.Rectangle2D;

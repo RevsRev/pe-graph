@@ -1,6 +1,6 @@
-package github.com.rev.plot.example.parabola.plot.graphable;
+package github.com.rev.plot.graphable;
 
-import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.graphics.GraphicsTransformative;
 import lombok.Getter;
 import lombok.Setter;
 

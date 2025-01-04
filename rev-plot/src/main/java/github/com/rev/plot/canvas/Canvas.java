@@ -1,8 +1,8 @@
-package github.com.rev.plot.example.parabola.plot.canvas;
+package github.com.rev.plot.canvas;
 
-import github.com.rev.plot.example.parabola.plot.graphable.Graphable;
-import github.com.rev.plot.example.parabola.plot.graphable.impl.GraphableBackground;
-import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.graphable.Graphable;
+import github.com.rev.plot.graphable.impl.GraphableBackground;
+import github.com.rev.plot.graphics.GraphicsTransformative;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
