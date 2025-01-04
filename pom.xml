@@ -5,8 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>github.com.rev</groupId>
-    <artifactId>rev-plot</artifactId>
+    <artifactId>rev-plot-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>rev-plot</module>
+        <module>rev-plot-examples</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -14,18 +19,4 @@
         <lombok.version>1.18.36</lombok.version>
         <rev-math.version>1.0-SNAPSHOT</rev-math.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>github.com.rev</groupId>
-            <artifactId>rev-math</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
 </project>

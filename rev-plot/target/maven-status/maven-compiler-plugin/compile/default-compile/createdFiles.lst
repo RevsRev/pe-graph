@@ -1,0 +1,16 @@
+github/com/rev/plot/example/parabola/plot/graphable/Graphable.class
+github/com/rev/plot/example/parabola/plot/ui/GraphContent.class
+github/com/rev/plot/example/parabola/plot/graphics/GraphicsTransformative.class
+github/com/rev/plot/example/parabola/plot/ui/GraphFrame.class
+github/com/rev/plot/example/parabola/plot/ui/RefreshListener.class
+github/com/rev/plot/example/parabola/plot/graphable/impl/func/GraphableFunc$FuncTypes.class
+github/com/rev/plot/example/parabola/plot/ui/RefreshParms.class
+github/com/rev/plot/example/parabola/plot/graphics/impl/GraphicsLinear.class
+github/com/rev/plot/example/parabola/plot/canvas/ScreenCoordinateMapper.class
+github/com/rev/plot/example/parabola/plot/graphable/impl/func/GraphableFunc.class
+github/com/rev/plot/example/parabola/plot/ui/GraphFrameUpdateRunnable.class
+github/com/rev/plot/example/parabola/plot/graphable/impl/GraphableAxes.class
+github/com/rev/plot/example/parabola/plot/ui/GraphFrame$1.class
+github/com/rev/plot/example/parabola/plot/graphable/impl/GraphableBackground.class
+github/com/rev/plot/example/parabola/plot/ui/GraphFrame$2.class
+github/com/rev/plot/example/parabola/plot/canvas/Canvas.class
