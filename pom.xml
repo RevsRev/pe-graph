@@ -22,9 +22,9 @@
             <version>${lombok.version}</version>
         </dependency>
         <dependency>
-            <groupId>rev.math</groupId>
+            <groupId>github.com.rev</groupId>
             <artifactId>rev-math</artifactId>
-            <version>${rev-math.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
