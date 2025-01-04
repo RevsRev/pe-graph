@@ -1,11 +1,19 @@
 package github.com.rev.plot.example.parabola.plot.ui;
 
+import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
 import lombok.Getter;
 import lombok.Setter;
-import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.LayoutManager;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 
 public class GraphContent extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener

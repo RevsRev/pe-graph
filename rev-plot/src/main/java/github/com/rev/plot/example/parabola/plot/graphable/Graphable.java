@@ -1,22 +1,20 @@
 package github.com.rev.plot.example.parabola.plot.graphable;
 
+import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
 import lombok.Getter;
 import lombok.Setter;
-import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
+@Setter
+@Getter
 public abstract class Graphable
 {
-    @Getter
-    @Setter
     private boolean visible = true;
 
-    @Getter @Setter
     private Color color = Color.BLACK;
 
-    @Getter @Setter
     private int layer = 0;
 
     public void paint(GraphicsTransformative graphicsT, Rectangle2D canvas) {

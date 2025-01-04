@@ -1,12 +1,18 @@
 package github.com.rev.plot.example.parabola.plot.ui;
 
+import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
 import lombok.Getter;
 import lombok.Setter;
-import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GraphFrame extends JFrame implements RefreshListener
 {
@@ -14,9 +20,6 @@ public class GraphFrame extends JFrame implements RefreshListener
     private int width = 1600;
     @Getter @Setter
     private int height = 800;
-
-    private Point previousDragPos = null;
-    private Point currentDragPos = null;
 
     private final JPanel contentPane;
 

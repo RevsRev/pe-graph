@@ -1,28 +1,29 @@
 package github.com.rev.plot.example.parabola.plot.graphics;
 
+import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
 import lombok.Getter;
 import lombok.Setter;
-import github.com.rev.plot.example.parabola.plot.canvas.Canvas;
 import rev.pe.math.linear.vec.Vec2;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 
 
+@Setter
 public abstract class GraphicsTransformative
 {
-    @Setter
     private Graphics g = null;
 
-    @Getter @Setter
+    @Getter
     private double widthScale = 1.0f;
 
-    @Getter @Setter
+    @Getter
     private double heightScale = 1.0f;
 
-    @Getter @Setter
+    @Getter
     private Canvas canvas;
 
-    @Getter @Setter
+    @Getter
     private boolean erase = false;
 
     public abstract Vec2 transform(Vec2 point);

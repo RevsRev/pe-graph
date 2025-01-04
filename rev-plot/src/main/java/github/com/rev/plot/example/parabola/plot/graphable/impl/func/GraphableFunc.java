@@ -1,8 +1,8 @@
 package github.com.rev.plot.example.parabola.plot.graphable.impl.func;
 
-import lombok.NonNull;
 import github.com.rev.plot.example.parabola.plot.graphable.Graphable;
 import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import lombok.NonNull;
 import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.geom.Rectangle2D;

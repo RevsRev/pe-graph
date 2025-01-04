@@ -1,16 +1,20 @@
 package github.com.rev.plot.example.parabola.plot.canvas;
 
-import lombok.Getter;
-import lombok.Setter;
 import github.com.rev.plot.example.parabola.plot.graphable.Graphable;
 import github.com.rev.plot.example.parabola.plot.graphable.impl.GraphableBackground;
 import github.com.rev.plot.example.parabola.plot.graphics.GraphicsTransformative;
+import lombok.Getter;
+import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
 
-import java.awt.*;
-import java.util.List;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 public class Canvas
 {
