@@ -16,9 +16,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ConwaysLifeMain
-{
-
+public final class ConwaysLifeMain {
     private static int WIDTH = 3600;
     private static int HEIGHT = 1800;
 

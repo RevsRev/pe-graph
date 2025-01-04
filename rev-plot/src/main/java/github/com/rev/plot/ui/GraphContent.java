@@ -16,18 +16,20 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 
-public class GraphContent extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener
-{
+public final class GraphContent extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener {
     @Getter @Setter
-    private int width = 1600;
+    private int width;
     @Getter @Setter
-    private int height = 800;
+    private int height;
     private Point previousDragPos = null;
     private Point currentDragPos = null;
 
     private final Canvas canvas;
 
-    public GraphContent(LayoutManager layoutManager, int width, int height, Canvas canvas) {
+    public GraphContent(final LayoutManager layoutManager,
+                        final int width,
+                        final int height,
+                        final Canvas canvas) {
         super(layoutManager);
         this.width = width;
         this.height = height;
@@ -42,59 +44,51 @@ public class GraphContent extends JPanel implements MouseWheelListener, MouseMot
 
 
     @Override
-    public void paint(Graphics g) {
-        canvas.paint((Graphics2D)g);
+    public void paint(final Graphics g) {
+        canvas.paint((Graphics2D) g);
     }
 
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e)
-    {
+    public void mouseWheelMoved(final MouseWheelEvent e) {
 
     }
 
     @Override
-    public void mouseDragged(MouseEvent e)
-    {
+    public void mouseDragged(final MouseEvent e) {
         currentDragPos = e.getPoint();
         canvas.drag(currentDragPos, previousDragPos);
         previousDragPos = currentDragPos;
     }
 
     @Override
-    public void mouseMoved(MouseEvent e)
-    {
+    public void mouseMoved(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseClicked(MouseEvent e)
-    {
+    public void mouseClicked(final MouseEvent e) {
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e)
-    {
+    public void mousePressed(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e)
-    {
+    public void mouseReleased(final MouseEvent e) {
         currentDragPos = null;
         previousDragPos = null;
     }
 
     @Override
-    public void mouseEntered(MouseEvent e)
-    {
+    public void mouseEntered(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e)
-    {
+    public void mouseExited(final MouseEvent e) {
 
     }
 }

@@ -10,15 +10,14 @@ import java.awt.Graphics;
 
 
 @Setter
-public abstract class GraphicsTransformative
-{
+public abstract class GraphicsTransformative {
     private Graphics g = null;
 
     @Getter
-    private double widthScale = 1.0f;
+    private final double widthScale = 1.0f;
 
     @Getter
-    private double heightScale = 1.0f;
+    private final double heightScale = 1.0f;
 
     @Getter
     private Canvas canvas;
@@ -28,17 +27,17 @@ public abstract class GraphicsTransformative
 
     public abstract Vec2 transform(Vec2 point);
 
-    public final void drawPoint(Vec2 point, int size) {
+    public void drawPoint(final Vec2 point, final int size) {
         if (g == null) {
             return;
         }
 
         Vec2 p = transform(point);
         mapToScreen(p);
-        draw(() -> g.fillOval((int)p.x - size/2, (int)p.y - size/2, size,size));
+        draw(() -> g.fillOval((int) p.x - size / 2, (int) p.y - size / 2, size, size));
     }
 
-    public final void drawLine(Vec2 start, Vec2 end) {
+    public void drawLine(final Vec2 start, final Vec2 end) {
         if (g == null) {
             return;
         }
@@ -47,21 +46,23 @@ public abstract class GraphicsTransformative
         mapToScreen(s);
         mapToScreen(e);
 
-        draw(() -> g.drawLine((int)s.x, (int)s.y, (int)e.x, (int)e.y));
+        draw(() -> g.drawLine((int) s.x, (int) s.y, (int) e.x, (int) e.y));
     }
 
-    public final void fillRectangle(double x, double y, double width, double height) {
-        Vec2 bottomLeftCorner = new Vec2(x,y);
-        Vec2 topRightCorner = new Vec2(x+width, y+height);
+    public void fillRectangle(final double x,
+                              final double y,
+                              final double width,
+                              final double height) {
+        Vec2 bottomLeftCorner = new Vec2(x, y);
+        Vec2 topRightCorner = new Vec2(x + width, y + height);
         mapToScreen(bottomLeftCorner);
         mapToScreen(topRightCorner);
-        draw(()->g.fillRect((int)bottomLeftCorner.x, (int)bottomLeftCorner.y,
-                (int)(topRightCorner.x - bottomLeftCorner.x), (int)(bottomLeftCorner.y-topRightCorner.y)));
+        draw(() -> g.fillRect((int) bottomLeftCorner.x, (int) bottomLeftCorner.y,
+                (int) (topRightCorner.x - bottomLeftCorner.x), (int) (bottomLeftCorner.y - topRightCorner.y)));
     }
 
-    private Runnable getDrawableRunnable(Runnable implementationRunnable) {
-        return () ->
-        {
+    private Runnable getDrawableRunnable(final Runnable implementationRunnable) {
+        return () -> {
             if (erase) {
                 g.setColor(canvas.getBackgroundColor());
             }
@@ -72,16 +73,16 @@ public abstract class GraphicsTransformative
         };
     }
 
-    private final void draw(Runnable drawImplementation) {
+    private void draw(final Runnable drawImplementation) {
         Runnable drawRunnable = getDrawableRunnable(drawImplementation);
         drawRunnable.run();
     }
 
-    private final void mapToScreen(Vec2 p) {
+    private void mapToScreen(final Vec2 p) {
         canvas.getCoordMapper().mapToScreen(p);
     }
 
-    public void setColor(Color color) {
+    public void setColor(final Color color) {
         if (g != null) {
             g.setColor(color);
         }
@@ -92,5 +93,4 @@ public abstract class GraphicsTransformative
         }
         return null;
     }
-
 }

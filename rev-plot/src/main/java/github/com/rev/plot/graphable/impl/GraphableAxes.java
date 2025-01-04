@@ -6,11 +6,9 @@ import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.geom.Rectangle2D;
 
-public class GraphableAxes extends Graphable
-{
+public class GraphableAxes extends Graphable {
     @Override
-    public void paintImpl(GraphicsTransformative graphicsT, Rectangle2D canvas)
-    {
+    public void paintImpl(final GraphicsTransformative graphicsT, final Rectangle2D canvas) {
         double xMin = Math.floor(canvas.getMinX());
         double xMax = Math.ceil(canvas.getMaxX());
         double yMin = Math.floor(canvas.getMinY());
@@ -18,7 +16,7 @@ public class GraphableAxes extends Graphable
 
         Vec2 start = new Vec2(xMin, canvas.getMinY());
         Vec2 end = new Vec2(xMin, canvas.getMaxY());
-        for (double x = xMin; x<xMax; x += 1) {
+        for (double x = xMin; x < xMax; x += 1) {
             start.x = x;
             end.x = x;
             graphicsT.drawLine(start, end);
@@ -26,7 +24,7 @@ public class GraphableAxes extends Graphable
 
         start = new Vec2(canvas.getMinX(), yMin);
         end = new Vec2(canvas.getMaxX(), yMin);
-        for (double y = yMin; y<yMax; y += 1) {
+        for (double y = yMin; y < yMax; y += 1) {
             start.y = y;
             end.y = y;
             graphicsT.drawLine(start, end);

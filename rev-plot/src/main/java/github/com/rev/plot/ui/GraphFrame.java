@@ -8,24 +8,21 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class GraphFrame extends JFrame implements RefreshListener
-{
+public final class GraphFrame extends JFrame implements RefreshListener {
     @Getter @Setter
-    private int width = 1600;
+    private int width;
     @Getter @Setter
-    private int height = 800;
+    private int height;
 
     private final JPanel contentPane;
 
     private final Canvas canvas;
 
-    public GraphFrame(int width, int height, Canvas canvas) {
+    public GraphFrame(final int width, final int height, final Canvas canvas) {
         this.width = width;
         this.height = height;
         this.canvas = canvas;
@@ -37,35 +34,29 @@ public class GraphFrame extends JFrame implements RefreshListener
         setSize(width, height);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent e) {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(final WindowEvent e) {
                 onClose();
             }
         });
 
-        contentPane.registerKeyboardAction(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                onClose();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(
+                e -> onClose(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void onClose() {
         dispose();
     }
 
-    private void scheduleRepaint(RefreshParms parms) {
-        canvas.getGraphicsT().setErase(parms.erase);
-        contentPane.paintImmediately(0,0,width, height);
+    private void scheduleRepaint(final RefreshParms parms) {
+        canvas.getGraphicsT().setErase(parms.isErase());
+        contentPane.paintImmediately(0, 0, width, height);
         canvas.getGraphicsT().setErase(false);
     }
 
     @Override
-    public void refreshFired(RefreshParms parms)
-    {
+    public void refreshFired(final RefreshParms parms) {
         scheduleRepaint(parms);
     }
 }

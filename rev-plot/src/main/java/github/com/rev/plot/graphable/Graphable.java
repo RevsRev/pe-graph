@@ -9,15 +9,14 @@ import java.awt.geom.Rectangle2D;
 
 @Setter
 @Getter
-public abstract class Graphable
-{
+public abstract class Graphable {
     private boolean visible = true;
 
     private Color color = Color.BLACK;
 
     private int layer = 0;
 
-    public void paint(GraphicsTransformative graphicsT, Rectangle2D canvas) {
+    public void paint(final GraphicsTransformative graphicsT, final Rectangle2D canvas) {
         if (visible) {
             Color oldColor = graphicsT.getColor();
             graphicsT.setColor(color);

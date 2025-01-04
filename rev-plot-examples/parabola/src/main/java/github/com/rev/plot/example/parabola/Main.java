@@ -12,7 +12,7 @@ import rev.pe.math.linear.vec.Vec2;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
-public class Main {
+public final class Main {
     public static void main(String[] args) {
         GraphicsLinear graphicsT = new GraphicsLinear(new Vec2(1,0), new Vec2(0,1));
         Canvas canvas = new Canvas(graphicsT);

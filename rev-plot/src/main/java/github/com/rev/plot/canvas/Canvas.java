@@ -13,11 +13,13 @@ import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
-public class Canvas
-{
+public final class Canvas {
+
+    public static final Rectangle2D.Double DEFAULT_CANVAS_CALC = new Rectangle2D.Double(-10, -10, 20, 20);
+    public static final Rectangle2D.Double DEFAULT_CANVAS_WINDOW = new Rectangle2D.Double(-5, -5, 10, 10);
+
     private boolean refresh = true;
 
     @Getter
@@ -27,9 +29,9 @@ public class Canvas
     private final ScreenCoordinateMapper coordMapper = new ScreenCoordinateMapper(this);
 
     @Getter @Setter
-    private Rectangle2D canvasCalc = new Rectangle2D.Double(-10, -10, 20, 20);
+    private Rectangle2D canvasCalc = DEFAULT_CANVAS_CALC;
     @Getter @Setter
-    private Rectangle2D canvasWindow = new Rectangle2D.Double(-5,-5,10,10);
+    private Rectangle2D canvasWindow = DEFAULT_CANVAS_WINDOW;
 
     @Getter @Setter
     private int paintBackground = 0; //at start up we need to paint this twice (gross)
@@ -46,17 +48,17 @@ public class Canvas
 
     private final List<Graphable> graphables = new ArrayList<>();
 
-    public Canvas(GraphicsTransformative graphicsT) {
+    public Canvas(final GraphicsTransformative graphicsT) {
         this.graphicsT = graphicsT;
         graphicsT.setCanvas(this);
     }
 
-    public void rescale(double widthScale, double heightScale) {
-        coordMapper.widthScale = widthScale;
-        coordMapper.heightScale = heightScale;
+    public void rescale(final double widthScale, final double heightScale) {
+        coordMapper.setWidthScale(widthScale);
+        coordMapper.setHeightScale(heightScale);
     }
 
-    public final void paint(Graphics2D g) {
+    public void paint(final Graphics2D g) {
         if (!refresh) {
             return;
         }
@@ -75,21 +77,20 @@ public class Canvas
     }
 
     public void paintGraphables() {
-        Iterator<Graphable> it = graphables.iterator();
-        while (it.hasNext()) {
-            it.next().paint(graphicsT, canvasCalc);
+        for (Graphable graphable : graphables) {
+            graphable.paint(graphicsT, canvasCalc);
         }
     }
 
-    public void addGraphable(Graphable graphable) {
+    public void addGraphable(final Graphable graphable) {
         graphables.add(graphable);
         graphables.sort(Comparator.comparingInt(Graphable::getLayer));
     }
-    public void removeGraphable(Graphable graphable) {
+    public void removeGraphable(final Graphable graphable) {
         graphables.remove(graphable);
     }
 
-    public void drag(Point previous, Point current) {
+    public void drag(final Point previous, final Point current) {
         if (previous == null || current == null) {
             return;
         }
@@ -98,8 +99,14 @@ public class Canvas
         Vec2 c = new Vec2(current.x, current.y);
         coordMapper.mapToCanvas(p);
         coordMapper.mapToCanvas(c);
-        Vec2 displacement = new Vec2(c.x-p.x, c.y-p.y);
-        canvasCalc = new Rectangle2D.Double(canvasCalc.getX() + displacement.x, canvasCalc.getY() + displacement.y, canvasCalc.getWidth(), canvasCalc.getHeight());
-        canvasWindow = new Rectangle2D.Double(canvasWindow.getX() + displacement.x, canvasWindow.getY() + displacement.y, canvasWindow.getWidth(), canvasWindow.getHeight());
+        Vec2 displacement = new Vec2(c.x - p.x, c.y - p.y);
+        canvasCalc = new Rectangle2D.Double(canvasCalc.getX() + displacement.x,
+                canvasCalc.getY() + displacement.y,
+                canvasCalc.getWidth(),
+                canvasCalc.getHeight());
+        canvasWindow = new Rectangle2D.Double(canvasWindow.getX() + displacement.x,
+                canvasWindow.getY() + displacement.y,
+                canvasWindow.getWidth(),
+                canvasWindow.getHeight());
     }
 }
