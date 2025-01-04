@@ -17,15 +17,9 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <commons-lang3.version>3.13.0</commons-lang3.version>
-        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>github.com.rev</groupId>
-            <artifactId>rev-plot</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -38,7 +32,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven-jar-plugin.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
