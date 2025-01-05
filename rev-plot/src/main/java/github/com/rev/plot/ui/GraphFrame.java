@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public final class GraphFrame extends JFrame implements RefreshListener {
+public final class GraphFrame extends JFrame {
     @Getter @Setter
     private int width;
     @Getter @Setter
@@ -47,16 +47,5 @@ public final class GraphFrame extends JFrame implements RefreshListener {
 
     private void onClose() {
         dispose();
-    }
-
-    private void scheduleRepaint(final RefreshParms parms) {
-        canvas.getStylus().setErase(parms.isErase());
-        contentPane.paintImmediately(0, 0, width, height);
-        canvas.getStylus().setErase(false);
-    }
-
-    @Override
-    public void refreshFired(final RefreshParms parms) {
-        scheduleRepaint(parms);
     }
 }

@@ -1,13 +1,11 @@
 package github.com.rev.plot.canvas;
 
 import github.com.rev.plot.graphable.Graphable;
-import github.com.rev.plot.graphable.impl.GraphableBackground;
 import github.com.rev.plot.graphics.Stylus;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
