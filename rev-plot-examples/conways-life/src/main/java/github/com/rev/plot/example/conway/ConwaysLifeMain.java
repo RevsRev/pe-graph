@@ -4,12 +4,9 @@ package github.com.rev.plot.example.conway;
 import github.com.rev.plot.canvas.Canvas;
 import github.com.rev.plot.graphable.Graphable;
 import github.com.rev.plot.graphable.impl.GraphableAxes;
-import github.com.rev.plot.graphics.GraphicsTransformative;
-import github.com.rev.plot.graphics.impl.GraphicsLinear;
 import github.com.rev.plot.ui.GraphFrame;
 import github.com.rev.plot.ui.GraphFrameUpdateRunnable;
 import org.apache.commons.lang3.tuple.Pair;
-import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
@@ -21,14 +18,11 @@ public final class ConwaysLifeMain {
     private static int HEIGHT = 1800;
 
     public static void main(String[] args) {
-        GraphicsTransformative graphicsT = new GraphicsLinear(new Vec2(1,0), new Vec2(0,1));
-
         ConwaysLife conwaysLife = new ConwaysLife(initialConfiguration());
         GraphableConwaysLife graphableConwaysLife = new GraphableConwaysLife(conwaysLife);
 
-        Canvas canvas = new Canvas(graphicsT);
-        canvas.setCanvasCalc(new Rectangle2D.Double(-200, -200, 400, 400));
-        canvas.setCanvasWindow(new Rectangle2D.Double(-100,-100,200,200));
+        Canvas canvas = new Canvas(new Rectangle2D.Double(-200, -200, 400, 400),
+                new Rectangle2D.Double(-100, -100, 200, 200));
         canvas.addGraphable(graphableConwaysLife);
 
         Graphable axes = new GraphableAxes();

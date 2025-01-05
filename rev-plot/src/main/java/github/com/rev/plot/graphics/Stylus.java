@@ -1,6 +1,6 @@
 package github.com.rev.plot.graphics;
 
-import github.com.rev.plot.canvas.Canvas;
+import github.com.rev.plot.canvas.ScreenCoordinateMapper;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
@@ -10,20 +10,22 @@ import java.awt.Graphics;
 
 
 @Setter
-public abstract class GraphicsTransformative {
+public abstract class Stylus {
     private Graphics g = null;
 
-    @Getter
-    private final double widthScale = 1.0f;
+    private final ScreenCoordinateMapper coordinateMapper;
 
-    @Getter
-    private final double heightScale = 1.0f;
-
-    @Getter
-    private Canvas canvas;
+    @Getter @Setter
+    private Color backgroundColor = Color.WHITE;
+    @Getter @Setter
+    private Color defaultLineColor = Color.BLACK;
 
     @Getter
     private boolean erase = false;
+
+    protected Stylus(final ScreenCoordinateMapper coordinateMapper) {
+        this.coordinateMapper = coordinateMapper;
+    }
 
     public abstract Vec2 transform(Vec2 point);
 
@@ -64,11 +66,11 @@ public abstract class GraphicsTransformative {
     private Runnable getDrawableRunnable(final Runnable implementationRunnable) {
         return () -> {
             if (erase) {
-                g.setColor(canvas.getBackgroundColor());
+                g.setColor(backgroundColor);
             }
             implementationRunnable.run();
             if (erase) {
-                g.setColor(canvas.getDefaultLineColor());
+                g.setColor(defaultLineColor);
             }
         };
     }
@@ -79,7 +81,7 @@ public abstract class GraphicsTransformative {
     }
 
     private void mapToScreen(final Vec2 p) {
-        canvas.getCoordMapper().mapToScreen(p);
+        coordinateMapper.mapToScreen(p);
     }
 
     public final void setColor(final Color color) {

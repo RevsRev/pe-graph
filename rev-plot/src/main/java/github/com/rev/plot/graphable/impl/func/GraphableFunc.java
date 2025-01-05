@@ -1,7 +1,7 @@
 package github.com.rev.plot.graphable.impl.func;
 
+import github.com.rev.plot.canvas.Canvas;
 import github.com.rev.plot.graphable.Graphable;
-import github.com.rev.plot.graphics.GraphicsTransformative;
 import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.geom.Rectangle2D;
@@ -17,9 +17,10 @@ public final class GraphableFunc extends Graphable {
     }
 
     @Override
-    public void paintImpl(final GraphicsTransformative graphicsT, final Rectangle2D canvas) {
-        double xMin = canvas.getMinX();
-        double xMax = canvas.getMaxX();
+    public void paintImpl(final Canvas canvas) {
+        Rectangle2D canvasCalc = canvas.getCanvasCalc();
+        double xMin = canvasCalc.getMinX();
+        double xMax = canvasCalc.getMaxX();
 
         double step = (xMax - xMin) / DEFAULT_STEP;
         Vec2 start = new Vec2(0, 0);
@@ -29,7 +30,7 @@ public final class GraphableFunc extends Graphable {
             start.y = func.apply(x);
             end.x = x + step;
             end.y = func.apply(x + step);
-            graphicsT.drawLine(start, end);
+            canvas.getStylus().drawLine(start, end);
         }
     }
 

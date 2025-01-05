@@ -12,7 +12,7 @@ public final class ConwaysLife {
     @Getter
     private final Set<Pair<Integer, Integer>> cells;
 
-    public ConwaysLife(final Set<Pair<Integer,Integer>> initialConfiguration) {
+    public ConwaysLife(final Set<Pair<Integer, Integer>> initialConfiguration) {
         this.cells = initialConfiguration;
     }
 

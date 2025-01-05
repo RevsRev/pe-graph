@@ -1,33 +1,34 @@
 package github.com.rev.plot.graphable.impl;
 
+import github.com.rev.plot.canvas.Canvas;
 import github.com.rev.plot.graphable.Graphable;
-import github.com.rev.plot.graphics.GraphicsTransformative;
 import rev.pe.math.linear.vec.Vec2;
 
 import java.awt.geom.Rectangle2D;
 
 public class GraphableAxes extends Graphable {
     @Override
-    public void paintImpl(final GraphicsTransformative graphicsT, final Rectangle2D canvas) {
-        double xMin = Math.floor(canvas.getMinX());
-        double xMax = Math.ceil(canvas.getMaxX());
-        double yMin = Math.floor(canvas.getMinY());
-        double yMax = Math.ceil(canvas.getMaxY());
+    public void paintImpl(final Canvas canvas) {
+        Rectangle2D canvasCalc = canvas.getCanvasCalc();
+        double xMin = Math.floor(canvasCalc.getMinX());
+        double xMax = Math.ceil(canvasCalc.getMaxX());
+        double yMin = Math.floor(canvasCalc.getMinY());
+        double yMax = Math.ceil(canvasCalc.getMaxY());
 
-        Vec2 start = new Vec2(xMin, canvas.getMinY());
-        Vec2 end = new Vec2(xMin, canvas.getMaxY());
+        Vec2 start = new Vec2(xMin, canvasCalc.getMinY());
+        Vec2 end = new Vec2(xMin, canvasCalc.getMaxY());
         for (double x = xMin; x < xMax; x += 1) {
             start.x = x;
             end.x = x;
-            graphicsT.drawLine(start, end);
+            canvas.getStylus().drawLine(start, end);
         }
 
-        start = new Vec2(canvas.getMinX(), yMin);
-        end = new Vec2(canvas.getMaxX(), yMin);
+        start = new Vec2(canvasCalc.getMinX(), yMin);
+        end = new Vec2(canvasCalc.getMaxX(), yMin);
         for (double y = yMin; y < yMax; y += 1) {
             start.y = y;
             end.y = y;
-            graphicsT.drawLine(start, end);
+            canvas.getStylus().drawLine(start, end);
         }
     }
 }

@@ -2,7 +2,8 @@ package github.com.rev.plot.canvas;
 
 import github.com.rev.plot.graphable.Graphable;
 import github.com.rev.plot.graphable.impl.GraphableBackground;
-import github.com.rev.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.graphics.Stylus;
+import github.com.rev.plot.graphics.impl.GraphicsLinear;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
@@ -16,22 +17,16 @@ import java.util.Comparator;
 import java.util.List;
 
 public final class Canvas {
-
-    private static final Rectangle2D.Double DEFAULT_CANVAS_CALC = new Rectangle2D.Double(-10, -10, 20, 20);
-    private static final Rectangle2D.Double DEFAULT_CANVAS_WINDOW = new Rectangle2D.Double(-5, -5, 10, 10);
-
     private boolean refresh = true;
 
     @Getter
-    private final GraphicsTransformative graphicsT;
+    private final Stylus stylus;
+    @Getter
+    private final Rectangle2D canvasCalc;
+    private final Rectangle2D canvasWindow;
 
     @Getter
-    private final ScreenCoordinateMapper coordMapper = new ScreenCoordinateMapper(this);
-
-    @Getter @Setter
-    private Rectangle2D canvasCalc = DEFAULT_CANVAS_CALC;
-    @Getter @Setter
-    private Rectangle2D canvasWindow = DEFAULT_CANVAS_WINDOW;
+    private final ScreenCoordinateMapper coordMapper;
 
     private int paintBackground = 0; //at start up we need to paint this twice (gross)
 
@@ -47,9 +42,11 @@ public final class Canvas {
 
     private final List<Graphable> graphables = new ArrayList<>();
 
-    public Canvas(final GraphicsTransformative graphicsT) {
-        this.graphicsT = graphicsT;
-        graphicsT.setCanvas(this);
+    public Canvas(final Rectangle2D canvasCalc, final Rectangle2D canvasWindow) {
+        this.canvasCalc = canvasCalc;
+        this.canvasWindow = canvasWindow;
+        this.coordMapper = new ScreenCoordinateMapper(canvasWindow);
+        this.stylus = new GraphicsLinear(coordMapper, new Vec2(1, 0), new Vec2(0, 1));
     }
 
     public void rescale(final double widthScale, final double heightScale) {
@@ -62,11 +59,11 @@ public final class Canvas {
             return;
         }
 
-        graphicsT.setG(g);
+        stylus.setG(g);
 
-        if (paintBackground < 2) {
+        if (paintBackground >= 0) {
             background.setColor(backgroundColor);
-            background.paint(graphicsT, canvasCalc);
+            background.paint(this);
             paintBackground += 1;
         }
 
@@ -77,7 +74,7 @@ public final class Canvas {
 
     private void paintGraphables() {
         for (Graphable graphable : graphables) {
-            graphable.paint(graphicsT, canvasCalc);
+            graphable.paint(this);
         }
     }
 
@@ -99,13 +96,14 @@ public final class Canvas {
         coordMapper.mapToCanvas(p);
         coordMapper.mapToCanvas(c);
         Vec2 displacement = new Vec2(c.x - p.x, c.y - p.y);
-        canvasCalc = new Rectangle2D.Double(canvasCalc.getX() + displacement.x,
+
+        canvasCalc.setRect(new Rectangle2D.Double(canvasCalc.getX() + displacement.x,
                 canvasCalc.getY() + displacement.y,
                 canvasCalc.getWidth(),
-                canvasCalc.getHeight());
-        canvasWindow = new Rectangle2D.Double(canvasWindow.getX() + displacement.x,
+                canvasCalc.getHeight()));
+        canvasWindow.setRect(new Rectangle2D.Double(canvasWindow.getX() + displacement.x,
                 canvasWindow.getY() + displacement.y,
                 canvasWindow.getWidth(),
-                canvasWindow.getHeight());
+                canvasWindow.getHeight()));
     }
 }

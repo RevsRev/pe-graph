@@ -1,11 +1,11 @@
 package github.com.rev.plot.graphable;
 
-import github.com.rev.plot.graphics.GraphicsTransformative;
+import github.com.rev.plot.canvas.Canvas;
+import github.com.rev.plot.graphics.Stylus;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.Color;
-import java.awt.geom.Rectangle2D;
 
 @Setter
 @Getter
@@ -16,13 +16,14 @@ public abstract class Graphable {
 
     private int layer = 0;
 
-    public void paint(final GraphicsTransformative graphicsT, final Rectangle2D canvas) {
+    public void paint(final Canvas canvas) {
         if (visible) {
-            Color oldColor = graphicsT.getColor();
-            graphicsT.setColor(color);
-            paintImpl(graphicsT, canvas);
-            graphicsT.setColor(oldColor);
+            Stylus stylus = canvas.getStylus();
+            Color oldColor = stylus.getColor();
+            stylus.setColor(color);
+            paintImpl(canvas);
+            stylus.setColor(oldColor);
         }
     }
-    public abstract void paintImpl(GraphicsTransformative graphicsT, Rectangle2D canvas);
+    public abstract void paintImpl(Canvas canvas);
 }

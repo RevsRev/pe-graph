@@ -50,9 +50,9 @@ public final class GraphFrame extends JFrame implements RefreshListener {
     }
 
     private void scheduleRepaint(final RefreshParms parms) {
-        canvas.getGraphicsT().setErase(parms.isErase());
+        canvas.getStylus().setErase(parms.isErase());
         contentPane.paintImmediately(0, 0, width, height);
-        canvas.getGraphicsT().setErase(false);
+        canvas.getStylus().setErase(false);
     }
 
     @Override
