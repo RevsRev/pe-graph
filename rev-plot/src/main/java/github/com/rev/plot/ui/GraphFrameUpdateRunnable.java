@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class GraphFrameUpdateRunnable implements Runnable {
     private final GraphFrame graphFrame;
+    private static final int PAINT_TIME_MILLIS = 20;
     private static final int THREAD_SLEEP_TIME_MILLIS = 30;
 
     public GraphFrameUpdateRunnable(final GraphFrame graphFrame) {
@@ -22,7 +23,7 @@ public final class GraphFrameUpdateRunnable implements Runnable {
         while (true) {
             try {
                 if (graphFrame.isVisible()) {
-                    graphFrame.repaint();
+                    graphFrame.repaint(PAINT_TIME_MILLIS);
                 }
             } finally {
                 try {
