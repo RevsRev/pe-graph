@@ -45,12 +45,7 @@ public final class ConwaysLifeMain {
 
     public static Set<Pair<Integer,Integer>> initialConfiguration() {
         HashSet<Pair<Integer,Integer>> configuration = new HashSet<>();
-        configuration.add(Pair.of(0, 1));
-        configuration.add(Pair.of(1, 0));
-        configuration.add(Pair.of(2, 0));
-        configuration.add(Pair.of(2, 1));
-        configuration.add(Pair.of(2, 2));
-        /*configuration.add(Pair.of(1,1));
+        configuration.add(Pair.of(1,1));
         configuration.add(Pair.of(2,1));
         configuration.add(Pair.of(3,1));
         configuration.add(Pair.of(4,1));
@@ -61,7 +56,7 @@ public final class ConwaysLifeMain {
         configuration.add(Pair.of(3,3));
         configuration.add(Pair.of(4,2));
         configuration.add(Pair.of(5,2));
-        configuration.add(Pair.of(6,3));*/
+        configuration.add(Pair.of(6,3));
         return configuration;
     }
 
