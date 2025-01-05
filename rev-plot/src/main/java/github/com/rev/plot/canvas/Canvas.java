@@ -27,15 +27,6 @@ public final class Canvas {
     @Getter
     private final ScreenCoordinateMapper coordMapper;
 
-    private int paintBackground = 0; //at start up we need to paint this twice (gross)
-
-    @Getter @Setter
-    private Color backgroundColor = Color.WHITE;
-    @Getter @Setter
-    private Color defaultLineColor = Color.BLACK;
-
-    private final GraphableBackground background = new GraphableBackground();
-
     @Getter @Setter
     private boolean paintGraphables = true;
 
@@ -59,12 +50,6 @@ public final class Canvas {
         }
 
         stylus.setG(g);
-
-        if (paintBackground >= 0) {
-            background.setColor(backgroundColor);
-            background.paint(this);
-            paintBackground += 1;
-        }
 
         if (paintGraphables) {
             paintGraphables();
