@@ -3,7 +3,6 @@ package github.com.rev.plot.canvas;
 import github.com.rev.plot.graphable.Graphable;
 import github.com.rev.plot.graphable.impl.GraphableBackground;
 import github.com.rev.plot.graphics.Stylus;
-import github.com.rev.plot.graphics.impl.GraphicsLinear;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
@@ -46,7 +45,7 @@ public final class Canvas {
         this.canvasCalc = canvasCalc;
         this.canvasWindow = canvasWindow;
         this.coordMapper = new ScreenCoordinateMapper(canvasWindow);
-        this.stylus = new GraphicsLinear(coordMapper, new Vec2(1, 0), new Vec2(0, 1));
+        this.stylus = new Stylus(coordMapper);
     }
 
     public void rescale(final double widthScale, final double heightScale) {

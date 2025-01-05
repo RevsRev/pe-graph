@@ -1,6 +1,8 @@
 package github.com.rev.plot.graphics;
 
 import github.com.rev.plot.canvas.ScreenCoordinateMapper;
+import github.com.rev.plot.coord.Mapping;
+import github.com.rev.plot.coord.impl.LinearMapping;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
@@ -10,10 +12,11 @@ import java.awt.Graphics;
 
 
 @Setter
-public abstract class Stylus {
+public final class Stylus {
     private Graphics g = null;
 
     private final ScreenCoordinateMapper coordinateMapper;
+    private final Mapping mapping;
 
     @Getter @Setter
     private Color backgroundColor = Color.WHITE;
@@ -23,28 +26,27 @@ public abstract class Stylus {
     @Getter
     private boolean erase = false;
 
-    protected Stylus(final ScreenCoordinateMapper coordinateMapper) {
+    public Stylus(final ScreenCoordinateMapper coordinateMapper) {
         this.coordinateMapper = coordinateMapper;
+        this.mapping = LinearMapping.DEFAULT;
     }
-
-    public abstract Vec2 transform(Vec2 point);
 
     public final void drawPoint(final Vec2 point, final int size) {
         if (g == null) {
             return;
         }
 
-        Vec2 p = transform(point);
+        Vec2 p = mapping.apply(point);
         mapToScreen(p);
         draw(() -> g.fillOval((int) p.x - size / 2, (int) p.y - size / 2, size, size));
     }
 
-    public final void drawLine(final Vec2 start, final Vec2 end) {
+    public void drawLine(final Vec2 start, final Vec2 end) {
         if (g == null) {
             return;
         }
-        Vec2 s = transform(start);
-        Vec2 e = transform(end);
+        Vec2 s = mapping.apply(start);
+        Vec2 e = mapping.apply(end);
         mapToScreen(s);
         mapToScreen(e);
 
