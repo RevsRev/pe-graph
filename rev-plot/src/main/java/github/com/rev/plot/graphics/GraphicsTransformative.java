@@ -27,7 +27,7 @@ public abstract class GraphicsTransformative {
 
     public abstract Vec2 transform(Vec2 point);
 
-    public void drawPoint(final Vec2 point, final int size) {
+    public final void drawPoint(final Vec2 point, final int size) {
         if (g == null) {
             return;
         }
@@ -37,7 +37,7 @@ public abstract class GraphicsTransformative {
         draw(() -> g.fillOval((int) p.x - size / 2, (int) p.y - size / 2, size, size));
     }
 
-    public void drawLine(final Vec2 start, final Vec2 end) {
+    public final void drawLine(final Vec2 start, final Vec2 end) {
         if (g == null) {
             return;
         }
@@ -49,7 +49,7 @@ public abstract class GraphicsTransformative {
         draw(() -> g.drawLine((int) s.x, (int) s.y, (int) e.x, (int) e.y));
     }
 
-    public void fillRectangle(final double x,
+    public final void fillRectangle(final double x,
                               final double y,
                               final double width,
                               final double height) {
@@ -82,12 +82,12 @@ public abstract class GraphicsTransformative {
         canvas.getCoordMapper().mapToScreen(p);
     }
 
-    public void setColor(final Color color) {
+    public final void setColor(final Color color) {
         if (g != null) {
             g.setColor(color);
         }
     }
-    public Color getColor() {
+    public final Color getColor() {
         if (g != null) {
             return g.getColor();
         }

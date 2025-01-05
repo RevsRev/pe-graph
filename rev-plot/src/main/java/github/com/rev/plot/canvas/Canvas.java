@@ -17,8 +17,8 @@ import java.util.List;
 
 public final class Canvas {
 
-    public static final Rectangle2D.Double DEFAULT_CANVAS_CALC = new Rectangle2D.Double(-10, -10, 20, 20);
-    public static final Rectangle2D.Double DEFAULT_CANVAS_WINDOW = new Rectangle2D.Double(-5, -5, 10, 10);
+    private static final Rectangle2D.Double DEFAULT_CANVAS_CALC = new Rectangle2D.Double(-10, -10, 20, 20);
+    private static final Rectangle2D.Double DEFAULT_CANVAS_WINDOW = new Rectangle2D.Double(-5, -5, 10, 10);
 
     private boolean refresh = true;
 
@@ -33,7 +33,6 @@ public final class Canvas {
     @Getter @Setter
     private Rectangle2D canvasWindow = DEFAULT_CANVAS_WINDOW;
 
-    @Getter @Setter
     private int paintBackground = 0; //at start up we need to paint this twice (gross)
 
     @Getter @Setter
@@ -76,7 +75,7 @@ public final class Canvas {
         }
     }
 
-    public void paintGraphables() {
+    private void paintGraphables() {
         for (Graphable graphable : graphables) {
             graphable.paint(graphicsT, canvasCalc);
         }
