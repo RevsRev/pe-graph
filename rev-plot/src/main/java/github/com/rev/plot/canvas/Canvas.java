@@ -13,8 +13,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public final class Canvas {
-    private boolean refresh = true;
+public final class Canvas implements RefreshListener {
+    @Getter
+    private boolean repaint = true;
 
     @Getter
     private final Stylus stylus;
@@ -43,7 +44,7 @@ public final class Canvas {
     }
 
     public void paint(final Graphics2D g) {
-        if (!refresh) {
+        if (!repaint) {
             return;
         }
 
@@ -51,6 +52,7 @@ public final class Canvas {
 
         if (paintGraphables) {
             paintGraphables();
+            repaint = false;
         }
     }
 
@@ -87,5 +89,12 @@ public final class Canvas {
                 canvasWindow.getY() + displacement.y,
                 canvasWindow.getWidth(),
                 canvasWindow.getHeight()));
+
+        repaint = true;
+    }
+
+    @Override
+    public void onRefresh() {
+        repaint = true;
     }
 }

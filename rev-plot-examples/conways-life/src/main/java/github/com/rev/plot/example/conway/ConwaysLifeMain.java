@@ -4,6 +4,7 @@ package github.com.rev.plot.example.conway;
 import github.com.rev.plot.canvas.Canvas;
 import github.com.rev.plot.graphable.Graphable;
 import github.com.rev.plot.graphable.impl.GraphableAxes;
+import github.com.rev.plot.graphable.impl.GraphableBackground;
 import github.com.rev.plot.ui.GraphFrame;
 import github.com.rev.plot.ui.GraphFrameUpdateRunnable;
 import org.apache.commons.lang3.tuple.Pair;
@@ -18,16 +19,18 @@ public final class ConwaysLifeMain {
     private static int HEIGHT = 1800;
 
     public static void main(String[] args) {
-        ConwaysLife conwaysLife = new ConwaysLife(initialConfiguration());
-        GraphableConwaysLife graphableConwaysLife = new GraphableConwaysLife(conwaysLife);
-
         Canvas canvas = new Canvas(new Rectangle2D.Double(-200, -200, 400, 400),
                 new Rectangle2D.Double(-100, -100, 200, 200));
-        canvas.addGraphable(graphableConwaysLife);
 
         Graphable axes = new GraphableAxes();
         axes.setColor(Color.LIGHT_GRAY);
+        axes.setLayer(1);
         canvas.addGraphable(axes);
+
+        Graphable background = new GraphableBackground();
+        background.setLayer(-1);
+        background.setColor(Color.WHITE);
+        canvas.addGraphable(background);
 
         GraphFrame frame = new GraphFrame(WIDTH, HEIGHT, canvas);
 
@@ -35,6 +38,10 @@ public final class ConwaysLifeMain {
 
         frame.setVisible(true);
 
+        ConwaysLife conwaysLife = new ConwaysLife(initialConfiguration());
+        GraphableConwaysLife graphableConwaysLife = new GraphableConwaysLife(conwaysLife);
+        canvas.addGraphable(graphableConwaysLife);
+        conwaysLife.setRefreshListener(canvas);
         ConwaysLife.LifeRunner runner = new ConwaysLife.LifeRunner(conwaysLife);
         runner.start();
         while (frame.isVisible()) {

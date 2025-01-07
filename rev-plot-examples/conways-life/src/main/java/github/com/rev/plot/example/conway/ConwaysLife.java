@@ -1,5 +1,6 @@
 package github.com.rev.plot.example.conway;
 
+import github.com.rev.plot.canvas.RefreshListener;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.tuple.Pair;
@@ -14,6 +15,9 @@ public final class ConwaysLife {
     private final Set<Pair<Integer, Integer>> liveCells;
     @Getter
     private final Set<Pair<Integer, Integer>> deadCells = new HashSet<>();
+
+    @Setter
+    private RefreshListener refreshListener;
 
     public ConwaysLife(final Set<Pair<Integer, Integer>> initialConfiguration) {
         this.liveCells = initialConfiguration;
@@ -43,6 +47,12 @@ public final class ConwaysLife {
         liveCells.addAll(nextAlive);
         deadCells.clear();
         deadCells.addAll(nextDead);
+    }
+
+    private void refresh() {
+        if (refreshListener != null) {
+            refreshListener.onRefresh();
+        }
     }
 
     private boolean resurrect(final Pair<Integer,Integer> cell) {
@@ -87,6 +97,7 @@ public final class ConwaysLife {
         @Override
         public void run() {
             while (!stop) {
+                life.refresh();
                 life.update();
                 try {
                     Thread.sleep(SLEEP_MILLIS);

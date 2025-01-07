@@ -45,6 +45,10 @@ public final class GraphFrame extends JFrame {
                 JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    public boolean shouldRepaint() {
+        return canvas.isRepaint();
+    }
+
     private void onClose() {
         dispose();
     }

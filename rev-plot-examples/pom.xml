@@ -22,6 +22,7 @@
     <properties>
         <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+        <commons-lang3.version>3.13.0</commons-lang3.version>
     </properties>
 
     <dependencies>
@@ -31,6 +32,16 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>

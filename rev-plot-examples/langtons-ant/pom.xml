@@ -12,4 +12,26 @@
 
     <artifactId>langtons-ant</artifactId>
 
+    <properties>
+        <lombok.version>1.18.36</lombok.version>
+        <rev-math.version>1.0-SNAPSHOT</rev-math.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>github.com.rev</groupId>
+            <artifactId>rev-math</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
