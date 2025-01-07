@@ -21,9 +21,7 @@ public final class Main {
         canvas.addGraphable(axes);
 
         canvas.addGraphable(GraphableFunc.factory(GraphableFunc.FuncTypes.PARABOLA));
-
-        GraphFrameUpdateRunnable.startGraphUpdateThread(frame);
-
         frame.setVisible(true);
+        GraphFrameUpdateRunnable.startGraphUpdateThread(frame);
     }
 }

@@ -52,4 +52,8 @@ public final class GraphFrame extends JFrame {
     private void onClose() {
         dispose();
     }
+
+    public void setRepaint(boolean b) {
+        canvas.setRepaint(true);
+    }
 }

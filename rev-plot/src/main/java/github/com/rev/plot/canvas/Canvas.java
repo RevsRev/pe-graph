@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public final class Canvas implements RefreshListener {
-    @Getter
+    @Getter @Setter
     private boolean repaint = true;
 
     @Getter
@@ -47,12 +47,12 @@ public final class Canvas implements RefreshListener {
         if (!repaint) {
             return;
         }
+        repaint = false;
 
         stylus.setG(g);
 
         if (paintGraphables) {
             paintGraphables();
-            repaint = false;
         }
     }
 
