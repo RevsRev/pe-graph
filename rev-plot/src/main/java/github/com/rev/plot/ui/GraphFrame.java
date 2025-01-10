@@ -46,7 +46,7 @@ public final class GraphFrame extends JFrame {
     }
 
     public boolean shouldRepaint() {
-        return canvas.isRepaint();
+        return canvas.isRefresh();
     }
 
     private void onClose() {
@@ -54,6 +54,6 @@ public final class GraphFrame extends JFrame {
     }
 
     public void setRepaint(boolean b) {
-        canvas.setRepaint(true);
+        canvas.setRefresh(true);
     }
 }

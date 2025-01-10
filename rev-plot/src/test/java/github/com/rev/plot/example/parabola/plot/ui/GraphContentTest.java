@@ -1,9 +1,9 @@
 package github.com.rev.plot.example.parabola.plot.ui;
 
 import github.com.rev.plot.canvas.Canvas;
-import github.com.rev.plot.graphable.Graphable;
-import github.com.rev.plot.graphable.impl.GraphableAxes;
-import github.com.rev.plot.graphable.impl.func.GraphableFunc;
+import github.com.rev.plot.plotable.Plotable;
+import github.com.rev.plot.plotable.impl.PlotableAxes;
+import github.com.rev.plot.plotable.impl.func.PlotableFunc;
 import github.com.rev.plot.ui.GraphFrame;
 import github.com.rev.plot.ui.GraphFrameUpdateRunnable;
 
@@ -22,11 +22,11 @@ public class GraphContentTest
                 new Rectangle2D.Double(-20,-20,40,40));
         GraphFrame frame = new GraphFrame(1600, 800, canvas);
 
-        Graphable axes = new GraphableAxes();
+        Plotable axes = new PlotableAxes();
         axes.setColor(Color.LIGHT_GRAY);
-        canvas.addGraphable(axes);
+        canvas.addPlotable(axes);
 
-        canvas.addGraphable(GraphableFunc.factory(GraphableFunc.FuncTypes.PARABOLA));
+        canvas.addPlotable(PlotableFunc.factory(PlotableFunc.FuncTypes.PARABOLA));
 
         GraphFrameUpdateRunnable.startGraphUpdateThread(frame);
 

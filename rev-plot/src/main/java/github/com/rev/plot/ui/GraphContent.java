@@ -2,6 +2,9 @@ package github.com.rev.plot.ui;
 
 import github.com.rev.plot.canvas.Canvas;
 import github.com.rev.plot.canvas.ScreenCoordinateMapper;
+import github.com.rev.plot.geom.Curve;
+import github.com.rev.plot.graphics.Stylus;
+import github.com.rev.plot.plotable.Plotable;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
@@ -16,7 +19,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 
 public final class GraphContent extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener {
@@ -30,6 +35,7 @@ public final class GraphContent extends JPanel implements MouseWheelListener, Mo
     private final Canvas canvas;
     private final Rectangle2D window;
     private final ScreenCoordinateMapper coordMapper;
+    private final Stylus stylus;
 
     public GraphContent(final LayoutManager layoutManager,
                         final int width,
@@ -43,10 +49,7 @@ public final class GraphContent extends JPanel implements MouseWheelListener, Mo
         //TODO - Still need to do a bit more refactoring here...
         this.window = canvas.getCanvasCalc().getBounds2D();
         this.coordMapper = new ScreenCoordinateMapper(window);
-
-
-        //TODO - Ew!
-        canvas.initStylus(coordMapper);
+        stylus = new Stylus(coordMapper);
 
         rescale(width, height);
 
@@ -62,7 +65,26 @@ public final class GraphContent extends JPanel implements MouseWheelListener, Mo
 
     @Override
     public void paint(final Graphics g) {
-        canvas.paint((Graphics2D) g);
+        //TODO - Reimplement this logic
+        //        if (!repaint) {
+//            return;
+//        }
+//        repaint = false;
+//
+//        stylus.setG(g);
+//
+//        if (paintGraphables) {
+//            paintGraphables();
+//        }
+
+        if (g == null) {
+            return;
+        }
+
+        stylus.setG(g);
+        stylus.drawCurves(canvas.getCurves());
+        stylus.drawPoints(canvas.getPoints());
+        stylus.drawRectangles(canvas.getRectangles());
     }
 
 

@@ -2,9 +2,9 @@ package github.com.rev.plot.example.conway;
 
 
 import github.com.rev.plot.canvas.Canvas;
-import github.com.rev.plot.graphable.Graphable;
-import github.com.rev.plot.graphable.impl.GraphableAxes;
-import github.com.rev.plot.graphable.impl.GraphableBackground;
+import github.com.rev.plot.plotable.Plotable;
+import github.com.rev.plot.plotable.impl.PlotableAxes;
+import github.com.rev.plot.plotable.impl.PlotableBackground;
 import github.com.rev.plot.ui.GraphFrame;
 import github.com.rev.plot.ui.GraphFrameUpdateRunnable;
 import org.apache.commons.lang3.tuple.Pair;
@@ -22,15 +22,15 @@ public final class ConwaysLifeMain {
         Canvas canvas = new Canvas(new Rectangle2D.Double(-200, -200, 400, 400),
                 new Rectangle2D.Double(-100, -100, 200, 200));
 
-        Graphable axes = new GraphableAxes();
+        Plotable axes = new PlotableAxes();
         axes.setColor(Color.LIGHT_GRAY);
         axes.setLayer(1);
-        canvas.addGraphable(axes);
+        canvas.addPlotable(axes);
 
-        Graphable background = new GraphableBackground();
+        Plotable background = new PlotableBackground();
         background.setLayer(-1);
         background.setColor(Color.WHITE);
-        canvas.addGraphable(background);
+        canvas.addPlotable(background);
 
         GraphFrame frame = new GraphFrame(WIDTH, HEIGHT, canvas);
 
@@ -39,8 +39,8 @@ public final class ConwaysLifeMain {
         frame.setVisible(true);
 
         ConwaysLife conwaysLife = new ConwaysLife(initialConfiguration());
-        GraphableConwaysLife graphableConwaysLife = new GraphableConwaysLife(conwaysLife);
-        canvas.addGraphable(graphableConwaysLife);
+        PlotableConwaysLife graphableConwaysLife = new PlotableConwaysLife(conwaysLife);
+        canvas.addPlotable(graphableConwaysLife);
         conwaysLife.setRefreshListener(canvas);
         ConwaysLife.LifeRunner runner = new ConwaysLife.LifeRunner(conwaysLife);
         runner.start();

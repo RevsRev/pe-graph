@@ -86,7 +86,7 @@ public final class ConwaysLife {
     }
 
     public static class LifeRunner implements Runnable {
-        public static final int SLEEP_MILLIS = 500;
+        public static final int SLEEP_MILLIS = 100;
         private boolean stop = false;
         private final ConwaysLife life;
 

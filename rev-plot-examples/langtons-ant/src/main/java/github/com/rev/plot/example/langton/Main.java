@@ -1,9 +1,9 @@
 package github.com.rev.plot.example.langton;
 
 import github.com.rev.plot.canvas.Canvas;
-import github.com.rev.plot.graphable.Graphable;
-import github.com.rev.plot.graphable.impl.GraphableAxes;
-import github.com.rev.plot.graphable.impl.GraphableBackground;
+import github.com.rev.plot.plotable.Plotable;
+import github.com.rev.plot.plotable.impl.PlotableAxes;
+import github.com.rev.plot.plotable.impl.PlotableBackground;
 import github.com.rev.plot.ui.GraphFrame;
 import github.com.rev.plot.ui.GraphFrameUpdateRunnable;
 
@@ -19,15 +19,15 @@ public class Main {
         Canvas canvas = new Canvas(new Rectangle2D.Double(-200, -200, 400, 400),
                 new Rectangle2D.Double(-100, -100, 200, 200));
 
-        Graphable axes = new GraphableAxes();
+        Plotable axes = new PlotableAxes();
         axes.setColor(Color.LIGHT_GRAY);
         axes.setLayer(1);
-        canvas.addGraphable(axes);
+        canvas.addPlotable(axes);
 
-        Graphable background = new GraphableBackground();
+        Plotable background = new PlotableBackground();
         background.setLayer(-1);
         background.setColor(Color.WHITE);
-        canvas.addGraphable(background);
+        canvas.addPlotable(background);
 
         GraphFrame frame = new GraphFrame(WIDTH, HEIGHT, canvas);
 
@@ -36,8 +36,8 @@ public class Main {
         frame.setVisible(true);
 
         LangtonsAnt langtonsAnt = new LangtonsAnt();
-        GraphableLangtonsAnt graphableLangtonsAnt = new GraphableLangtonsAnt(langtonsAnt);
-        canvas.addGraphable(graphableLangtonsAnt);
+        PlotableLangtonsAnt graphableLangtonsAnt = new PlotableLangtonsAnt(langtonsAnt);
+        canvas.addPlotable(graphableLangtonsAnt);
         langtonsAnt.setRefreshListener(canvas);
         LangtonsAnt.LangtonsAntRunner runner = new LangtonsAnt.LangtonsAntRunner(langtonsAnt);
         runner.start();

@@ -1,62 +1,63 @@
 package github.com.rev.plot.canvas;
 
-import github.com.rev.plot.graphable.Graphable;
-import github.com.rev.plot.graphics.Stylus;
+import github.com.rev.plot.geom.Curve;
+import github.com.rev.plot.plotable.Plotable;
 import lombok.Getter;
 import lombok.Setter;
 import rev.pe.math.linear.vec.Vec2;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class Canvas implements RefreshListener {
     @Getter @Setter
-    private boolean repaint = true;
+    private boolean refresh = true;
 
-    @Getter
-    private Stylus stylus;
     @Getter
     private final Rectangle2D canvasCalc;
 
     @Getter @Setter
     private boolean paintGraphables = true;
 
-    private final List<Graphable> graphables = new ArrayList<>();
+    private final List<Plotable> plotables = new ArrayList<>();
 
     //TODO - Remove redundant parameter
     public Canvas(final Rectangle2D canvasCalc, final Rectangle2D canvasWindow) {
         this.canvasCalc = canvasCalc;
     }
 
-    public void paint(final Graphics2D g) {
-        if (!repaint) {
-            return;
+    public List<Curve> getCurves() {
+        List<Curve> curves = new LinkedList<>();
+        for (Plotable p: plotables) {
+            curves.addAll(p.getCurves(canvasCalc));
         }
-        repaint = false;
-
-        stylus.setG(g);
-
-        if (paintGraphables) {
-            paintGraphables();
+        return curves;
+    }
+    public List<Rectangle2D> getRectangles() {
+        List<Rectangle2D> rectangles = new LinkedList<>();
+        for (Plotable p: plotables) {
+            rectangles.addAll(p.getRectangles(canvasCalc));
         }
+        return rectangles;
+    }
+    public List<Point2D> getPoints() {
+        List<Point2D> points = new LinkedList<>();
+        for (Plotable p: plotables) {
+            points.addAll(p.getPoints(canvasCalc));
+        }
+        return points;
     }
 
-    private void paintGraphables() {
-        for (Graphable graphable : graphables) {
-            graphable.paint(this);
-        }
+    public void addPlotable(final Plotable plotable) {
+        plotables.add(plotable);
+        plotables.sort(Comparator.comparingInt(Plotable::getLayer));
     }
-
-    public void addGraphable(final Graphable graphable) {
-        graphables.add(graphable);
-        graphables.sort(Comparator.comparingInt(Graphable::getLayer));
-    }
-    public void removeGraphable(final Graphable graphable) {
-        graphables.remove(graphable);
+    public void removeGraphable(final Plotable plotable) {
+        plotables.remove(plotable);
     }
 
     public void drag(final Vec2 displacement) {
@@ -66,15 +67,11 @@ public final class Canvas implements RefreshListener {
                 canvasCalc.getWidth(),
                 canvasCalc.getHeight()));
 
-        repaint = true;
+        refresh = true;
     }
 
     @Override
     public void onRefresh() {
-        repaint = true;
-    }
-
-    public void initStylus(ScreenCoordinateMapper coordMapper) {
-        stylus = new Stylus(coordMapper);
+        refresh = true;
     }
 }
