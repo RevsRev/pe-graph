@@ -27,7 +27,7 @@ public final class GraphFrame extends JFrame {
         this.height = height;
         this.canvas = canvas;
 
-        canvas.rescale(width, height);
+//        canvas.rescale(width, height); ???
 
         contentPane = new GraphContent(getContentPane().getLayout(), width, height, canvas);
         setContentPane(contentPane);

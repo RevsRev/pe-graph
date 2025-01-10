@@ -18,29 +18,18 @@ public final class Canvas implements RefreshListener {
     private boolean repaint = true;
 
     @Getter
-    private final Stylus stylus;
+    private Stylus stylus;
     @Getter
     private final Rectangle2D canvasCalc;
-    private final Rectangle2D canvasWindow;
-
-    @Getter
-    private final ScreenCoordinateMapper coordMapper;
 
     @Getter @Setter
     private boolean paintGraphables = true;
 
     private final List<Graphable> graphables = new ArrayList<>();
 
+    //TODO - Remove redundant parameter
     public Canvas(final Rectangle2D canvasCalc, final Rectangle2D canvasWindow) {
         this.canvasCalc = canvasCalc;
-        this.canvasWindow = canvasWindow;
-        this.coordMapper = new ScreenCoordinateMapper(canvasWindow);
-        this.stylus = new Stylus(coordMapper);
-    }
-
-    public void rescale(final double widthScale, final double heightScale) {
-        coordMapper.setWidthScale(widthScale);
-        coordMapper.setHeightScale(heightScale);
     }
 
     public void paint(final Graphics2D g) {
@@ -70,25 +59,12 @@ public final class Canvas implements RefreshListener {
         graphables.remove(graphable);
     }
 
-    public void drag(final Point previous, final Point current) {
-        if (previous == null || current == null) {
-            return;
-        }
-
-        Vec2 p = new Vec2(previous.x, previous.y);
-        Vec2 c = new Vec2(current.x, current.y);
-        coordMapper.mapToCanvas(p);
-        coordMapper.mapToCanvas(c);
-        Vec2 displacement = new Vec2(c.x - p.x, c.y - p.y);
+    public void drag(final Vec2 displacement) {
 
         canvasCalc.setRect(new Rectangle2D.Double(canvasCalc.getX() + displacement.x,
                 canvasCalc.getY() + displacement.y,
                 canvasCalc.getWidth(),
                 canvasCalc.getHeight()));
-        canvasWindow.setRect(new Rectangle2D.Double(canvasWindow.getX() + displacement.x,
-                canvasWindow.getY() + displacement.y,
-                canvasWindow.getWidth(),
-                canvasWindow.getHeight()));
 
         repaint = true;
     }
@@ -96,5 +72,9 @@ public final class Canvas implements RefreshListener {
     @Override
     public void onRefresh() {
         repaint = true;
+    }
+
+    public void initStylus(ScreenCoordinateMapper coordMapper) {
+        stylus = new Stylus(coordMapper);
     }
 }

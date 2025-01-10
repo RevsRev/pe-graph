@@ -1,8 +1,10 @@
 package github.com.rev.plot.ui;
 
 import github.com.rev.plot.canvas.Canvas;
+import github.com.rev.plot.canvas.ScreenCoordinateMapper;
 import lombok.Getter;
 import lombok.Setter;
+import rev.pe.math.linear.vec.Vec2;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -14,6 +16,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.geom.Rectangle2D;
 
 
 public final class GraphContent extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener {
@@ -25,6 +28,8 @@ public final class GraphContent extends JPanel implements MouseWheelListener, Mo
     private Point currentDragPos = null;
 
     private final Canvas canvas;
+    private final Rectangle2D window;
+    private final ScreenCoordinateMapper coordMapper;
 
     public GraphContent(final LayoutManager layoutManager,
                         final int width,
@@ -35,13 +40,25 @@ public final class GraphContent extends JPanel implements MouseWheelListener, Mo
         this.height = height;
         this.canvas = canvas;
 
-        canvas.rescale(width, height);
+        //TODO - Still need to do a bit more refactoring here...
+        this.window = canvas.getCanvasCalc().getBounds2D();
+        this.coordMapper = new ScreenCoordinateMapper(window);
+
+
+        //TODO - Ew!
+        canvas.initStylus(coordMapper);
+
+        rescale(width, height);
 
         addMouseMotionListener(this);
         addMouseListener(this);
         addMouseWheelListener(this);
     }
 
+    public void rescale(final double widthScale, final double heightScale) {
+        coordMapper.setWidthScale(widthScale);
+        coordMapper.setHeightScale(heightScale);
+    }
 
     @Override
     public void paint(final Graphics g) {
@@ -57,7 +74,25 @@ public final class GraphContent extends JPanel implements MouseWheelListener, Mo
     @Override
     public void mouseDragged(final MouseEvent e) {
         currentDragPos = e.getPoint();
-        canvas.drag(currentDragPos, previousDragPos);
+
+        if (previousDragPos != null && currentDragPos != null) {
+
+            Vec2 p = new Vec2(previousDragPos.x, previousDragPos.y);
+            Vec2 c = new Vec2(currentDragPos.x, currentDragPos.y);
+
+            coordMapper.mapToCanvas(p);
+            coordMapper.mapToCanvas(c);
+
+            Vec2 displacement = new Vec2(p.x - c.x, p.y - c.y);
+
+            canvas.drag(displacement);
+
+            window.setRect(new Rectangle2D.Double(window.getX() + displacement.x,
+                    window.getY() + displacement.y,
+                    window.getWidth(),
+                    window.getHeight()));
+        }
+
         previousDragPos = currentDragPos;
     }
 
